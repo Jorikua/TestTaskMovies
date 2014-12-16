@@ -73,7 +73,7 @@ public class DetailedActivity extends Activity {
             String title = result.optString("title");
             mTitle.setText(title);
             String poster = result.optString("poster_path");
-            if (poster == "null") {
+            if (poster.equals("null")) {
                 Picasso.with(getApplicationContext()).load("https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffddfda8463c479898a3/images/no-poster-w185.jpg").resize(500, 800).into(mPoster);
             }else {
                 Picasso.with(getApplicationContext()).load("http://image.tmdb.org/t/p/w500" + poster).into(mPoster);
@@ -91,11 +91,19 @@ public class DetailedActivity extends Activity {
                 mCountry.setText(country);
             }
             String tagline = result.optString("tagline");
-            mTagline.setText(tagline);
+            if (tagline.equals("null")) {
+                mTagline.setText("");
+            } else {
+                mTagline.setText(tagline);
+            }
             String date = result.optString("release_date");
             mDate.setText(date);
             String overview = result.optString("overview");
-            mOverView.setText(overview);
+            if (overview.equals("null")) {
+                mOverView.setText("");
+            } else {
+                mOverView.setText(overview);
+            }
         }
     }
 
