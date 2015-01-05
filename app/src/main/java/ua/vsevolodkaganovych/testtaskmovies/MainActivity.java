@@ -2,10 +2,13 @@ package ua.vsevolodkaganovych.testtaskmovies;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -25,6 +28,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         actionBar.setDisplayShowTitleEnabled(true);
 
         mPager = (ViewPager)findViewById(R.id.pager);
+        mPager.setOffscreenPageLimit(3);
         mPagerAdapter = new PagerAdapter(this, getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
@@ -56,5 +60,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

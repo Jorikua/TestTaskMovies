@@ -12,5 +12,6 @@
     <string name="error_message">Cannot find any movie</string>
     <string name="title_activity_detailed">DetailedActivity</string>
     <string name="title_activity_another">AnotherActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

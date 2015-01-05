@@ -13,9 +13,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CustomListAdapter extends ArrayAdapter<Item> {
+public class CustomListAdapter extends ArrayAdapter<Result> {
 
-    public CustomListAdapter(Context context, ArrayList<Item> items) {
+    public CustomListAdapter(Context context, ArrayList<Result> items) {
         super(context, 0, items);
     }
 
@@ -29,7 +29,7 @@ public class CustomListAdapter extends ArrayAdapter<Item> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Item item = getItem(position);
+        Result item = getItem(position);
 
         ViewHolder viewHolder;
         if(convertView == null) {
@@ -44,9 +44,9 @@ public class CustomListAdapter extends ArrayAdapter<Item> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
         viewHolder.mTitle.setText(item.title);
-        viewHolder.mDate.setText("Release date: " + item.release_date);
-        viewHolder.mRating.setText("Rating: " + item.vote_average);
-        Picasso.with(getContext()).load("http://image.tmdb.org/t/p/original" + item.poster_path)
+        viewHolder.mDate.setText("Release date: " + item.releaseDate);
+        viewHolder.mRating.setText("Rating: " + Double.toString(item.voteAverage));
+        Picasso.with(getContext()).load("http://image.tmdb.org/t/p/original" + item.posterPath)
                 .resize(200, 200).centerCrop().into(viewHolder.mImageView);
 
         return convertView;

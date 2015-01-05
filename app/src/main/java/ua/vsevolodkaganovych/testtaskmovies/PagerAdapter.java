@@ -23,14 +23,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 0: return new FragmentTop();
             case 1: return new FragmentPopular();
             case 2: return new FragmentUpcoming();
-            case 3: return new FragmentSearch();
         }
         return new FragmentTop();
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -40,7 +39,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 0: return mContext.getString(R.string.top_fragment_name).toUpperCase(l);
             case 1: return mContext.getString(R.string.popular_fragment_name).toUpperCase(l);
             case 2: return mContext.getString(R.string.upcoming_fragment_name).toUpperCase(l);
-            case 3: return mContext.getString(R.string.search_fragment_name).toUpperCase(l);
         }
         return null;
     }
