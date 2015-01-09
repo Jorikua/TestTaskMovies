@@ -13,7 +13,9 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import ua.vsevolodkaganovych.testtaskmovies.Api.ApiClient;
+import ua.vsevolodkaganovych.testtaskmovies.Models.Genre;
 import ua.vsevolodkaganovych.testtaskmovies.Models.MovieDetailed;
+import ua.vsevolodkaganovych.testtaskmovies.Models.ProductionCountry;
 import ua.vsevolodkaganovych.testtaskmovies.R;
 
 
@@ -56,7 +58,32 @@ public class DetailedActivity extends Activity {
                 } else {
                     Picasso.with(getApplicationContext()).load("http://image.tmdb.org/t/p/w500" + movieDetailed.posterPath).into(mPoster);
                 }
-                mGenres.setText(movieDetailed.genres + "");
+                StringBuilder genresBuilder = new StringBuilder();
+                for (Genre genre : movieDetailed.genres) {
+                    genresBuilder.append(genre.name);
+                    genresBuilder.append(", ");
+                }
+                if (genresBuilder.length() == 0) {
+                    mGenres.setText("Genres: No data");
+                } else {
+                    String genString = genresBuilder.substring(0, genresBuilder.length() - 2);
+                    mGenres.setText(genString);
+                }
+
+                StringBuilder countriesBuilder = new StringBuilder();
+                for (ProductionCountry country : movieDetailed.productionCountries) {
+                    countriesBuilder.append(country.name);
+                    countriesBuilder.append(", ");
+                }
+                if (countriesBuilder.length() == 0) {
+                    mCountry.setText("Production countries: No data");
+                }else {
+                    String countryString = countriesBuilder.substring(0, countriesBuilder.length() - 2);
+                    mCountry.setText(countryString);
+                }
+                mTagline.setText(movieDetailed.tagline);
+                mDate.setText(movieDetailed.releaseDate);
+                mOverView.setText(movieDetailed.overview);
             }
 
             @Override

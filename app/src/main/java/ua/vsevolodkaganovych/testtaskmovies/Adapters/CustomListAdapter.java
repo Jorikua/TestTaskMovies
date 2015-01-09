@@ -18,6 +18,7 @@ import ua.vsevolodkaganovych.testtaskmovies.R;
 
 public class CustomListAdapter extends ArrayAdapter<Movie> {
 
+    private String mDefaultPoster = "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffddfda8463c479898a3/images/no-poster-w185.jpg";
     public CustomListAdapter(Context context, ArrayList<Movie> items) {
         super(context, 0, items);
     }
@@ -35,22 +36,27 @@ public class CustomListAdapter extends ArrayAdapter<Movie> {
         Movie item = getItem(position);
 
         ViewHolder viewHolder;
-        if(convertView == null) {
+        if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
-            viewHolder.mTitle = (TextView)convertView.findViewById(R.id.title);
-            viewHolder.mDate = (TextView)convertView.findViewById(R.id.date);
-            viewHolder.mRating = (TextView)convertView.findViewById(R.id.rating);
-            viewHolder.mImageView = (ImageView)convertView.findViewById(R.id.imageView);
+            viewHolder.mTitle = (TextView) convertView.findViewById(R.id.title);
+            viewHolder.mDate = (TextView) convertView.findViewById(R.id.date);
+            viewHolder.mRating = (TextView) convertView.findViewById(R.id.rating);
+            viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.imageView);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder)convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.mTitle.setText(item.title);
         viewHolder.mDate.setText("Release date: " + item.releaseDate);
         viewHolder.mRating.setText("Rating: " + Double.toString(item.voteAverage));
-        Picasso.with(getContext()).load("http://image.tmdb.org/t/p/original" + item.posterPath)
-                .resize(200, 200).centerCrop().into(viewHolder.mImageView);
+        if (item.posterPath == null) {
+            Picasso.with(getContext()).load(mDefaultPoster).resize(200, 200).centerCrop()
+                    .into(viewHolder.mImageView);
+        } else {
+            Picasso.with(getContext()).load("http://image.tmdb.org/t/p/original" + item.posterPath)
+                    .resize(200, 200).centerCrop().into(viewHolder.mImageView);
+        }
 
         return convertView;
     }
