@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,13 +19,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailedActivity"
-            android:label="@string/title_activity_detailed" >
+            android:name=".UI.DetailedActivity"
+            android:label="@string/title_activity_detailed"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".UI.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".MainActivity">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".UI.MainActivity">
         </activity>
     </application>
 
