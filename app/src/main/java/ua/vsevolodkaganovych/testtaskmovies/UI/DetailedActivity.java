@@ -54,9 +54,11 @@ public class DetailedActivity extends Activity {
             public void success(MovieDetailed movieDetailed, Response response) {
                 mTitle.setText(movieDetailed.title);
                 if (movieDetailed.posterPath == null) {
-                    Picasso.with(getApplicationContext()).load(mDefaultPoster).resize(500, 800).into(mPoster);
+                    Picasso.with(getApplicationContext()).load(mDefaultPoster).resize(500, 800)
+                            .placeholder(R.drawable.posterholderlarge).into(mPoster);
                 } else {
-                    Picasso.with(getApplicationContext()).load("http://image.tmdb.org/t/p/w500" + movieDetailed.posterPath).into(mPoster);
+                    Picasso.with(getApplicationContext()).load("http://image.tmdb.org/t/p/w500" + movieDetailed.posterPath)
+                            .placeholder(R.drawable.posterholderlarge).into(mPoster);
                 }
                 StringBuilder genresBuilder = new StringBuilder();
                 for (Genre genre : movieDetailed.genres) {

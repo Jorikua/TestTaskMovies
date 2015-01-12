@@ -51,11 +51,13 @@ public class CustomListAdapter extends ArrayAdapter<Movie> {
         viewHolder.mDate.setText("Release date: " + item.releaseDate);
         viewHolder.mRating.setText("Rating: " + Double.toString(item.voteAverage));
         if (item.posterPath == null) {
-            Picasso.with(getContext()).load(mDefaultPoster).resize(200, 200).centerCrop()
+            Picasso.with(getContext()).load(mDefaultPoster).resize(185, 277)
+                    .placeholder(R.drawable.posterholder)
                     .into(viewHolder.mImageView);
         } else {
-            Picasso.with(getContext()).load("http://image.tmdb.org/t/p/original" + item.posterPath)
-                    .resize(200, 200).centerCrop().into(viewHolder.mImageView);
+            Picasso.with(getContext()).load("http://image.tmdb.org/t/p/w185" + item.posterPath)
+                    .placeholder(R.drawable.posterholder)
+                    .into(viewHolder.mImageView);
         }
 
         return convertView;
