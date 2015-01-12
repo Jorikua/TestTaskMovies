@@ -9,8 +9,8 @@
     tools:context="ua.vsevolodkaganovych.testtaskmovies.UI.DetailedActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="165dp"
+        android:layout_height="244dp"
         android:id="@+id/poster"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -62,23 +62,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tagline"
+        android:lines="6"
+        android:ellipsize="end"
         android:layout_below="@+id/country"
         android:layout_alignLeft="@+id/country"
         android:layout_alignStart="@+id/country" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/overview"
+        android:layout_marginTop="30dp"
+        android:textSize="14sp"
+        android:scrollbars="vertical"
         android:layout_below="@+id/poster"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" >
-
-        <TextView
-            android:id="@+id/overview"
-            android:layout_marginTop="30dp"
-            android:textSize="14sp"
-            android:ellipsize="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
